@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Liste URL</title>
+</head>
+
+<body>
+    <h1>Voici les raccourcis d'urls :</h1>
+    <ul>
+        {% for url in list_redirections %}
+        <li><a href="{{ url.long_url }}">{{ url.long_url }}</a>
+            Via
+        <a href="{% url 'MiniURL:redirections' url.code %}">{{ url.long_url }}</a>
+        par {{ url.pseudo }}
+        <a href="{% url 'MiniURL:redirections' url.code %}">shortenerURL/{{ url.code }}</a> ({{ url.nbre_access }})</li>
+        {% empty %}
+        <p>Aucune url n'a encore été définie</p>
+        {% endfor %}
+    </ul>
+</body>
+</html>
