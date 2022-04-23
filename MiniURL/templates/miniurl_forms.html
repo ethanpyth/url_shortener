@@ -2,20 +2,52 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Raccourcisseur URL</title>
+    <title>Racourcisseur URL</title>
 </head>
 <body>
-    <h1>Creer un nouveau raccourcis</h1>
+    <header>
+        <nav class="navbar bg-dark mb-3">
+            <form action="{% url "MiniURL:forms_views" %}" method="POST" class="container">
+                {% csrf_token %}
+                <div class="input-group">
+                    <span class="input-group-text">URL</span>
+                    <input type="text" name="url" title="URL" id="" class="form-control" aria-label="URL" aria-describedby="basic-addon1">
+                    <input type="submit" value="SHORT IT" class="btn btn-success">
+                </div>
+            </form>
+        </nav>
+    </header>
+    <div class="container">
+        <table class="table-dark table">
+            <thead class="text-center">
+                <tr>
+                    <th scope="col">URL long</th>
+                    <th scope="col">URL raccourci</th>
+                    <th scope="col">Nombre d'accès</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for url in list_redirections %}
+                    <tr>
+                        <th scope="row"><a href="{{ url.long_url }}">{{ url.long_url }}</a></th>
+                        <td><a href="{% url 'MiniURL:redirections' url.code %}">url.st/{{ url.code }}</a></td>
+                        <td>{{ url.nbre_access }}</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+    <!-- <h1>Creer un nouveau raccourcis</h1>
     <p>
         {% if envoi %} Votre url a bien été raccourci{% endif %}
-        <form action="{% url "MiniURL:forms_views" %}" method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+        <form action="" method="post">
+
             <input type="submit" value="Submit">
         </form>
         <a href="{% url "MiniURL:list" %}">Voir la liste des URL</a>
-    </p>
+    </p> -->
 </body>
 </html>

@@ -16,7 +16,7 @@
             Via
         <a href="{% url 'MiniURL:redirections' url.code %}">{{ url.long_url }}</a>
         par {{ url.pseudo }}
-        <a href="{% url 'MiniURL:redirections' url.code %}">shortenerURL/{{ url.code }}</a> ({{ url.nbre_access }})</li>
+        <a href="{">shortenerURL/{{ url.code }}</a> ({{ url.nbre_access }})</li>
         {% empty %}
         <p>Aucune url n'a encore été définie</p>
         {% endfor %}

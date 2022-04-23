@@ -9,3 +9,6 @@ class MiniURL(models.Model):
     date_creation = models.DateTimeField(auto_now=False, auto_now_add=True)
     pseudo = models.CharField(max_length=255, blank=True, null=True)
     nbre_access = models.IntegerField(default=0)
+
+    def __str__(self):
+        return self.long_url

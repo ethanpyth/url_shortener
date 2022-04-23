@@ -6,9 +6,9 @@ from MiniURL.forms import miniurl_form, generate
 
 
 def list_redirections(request):
-    list_url = MiniURL.objects.order_by('-nbre_access')
+    list_url = MiniURL.objects.all().order_by('-nbre_access')
 
-    return render(request, 'list_url.html', {'list_redirections': list_url})
+    return render(request, 'miniurl_forms.html', {'list_redirections': list_url})
 
 
 def form_views(request):
@@ -20,7 +20,6 @@ def form_views(request):
             url.code = generate(10)
             url.long_url = form.cleaned_data['url']
             url.pseudo = form.cleaned_data['pseudo']
-
             url.save()
             envoi = True
         else:
