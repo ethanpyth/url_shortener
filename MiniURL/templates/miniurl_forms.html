@@ -15,6 +15,8 @@
                 <div class="input-group">
                     <span class="input-group-text">URL</span>
                     <input type="text" name="url" title="URL" id="" class="form-control" aria-label="URL" aria-describedby="basic-addon1">
+                    <span class="input-group-text">Pseudo</span>
+                    <input type="text" class="form-control" aria-label="PSEUDO" aria-labelledby="basic-addon1" name="pseudo">
                     <input type="submit" value="SHORT IT" class="btn btn-success">
                 </div>
             </form>
@@ -32,7 +34,7 @@
             <tbody>
                 {% for url in list_redirections %}
                     <tr>
-                        <th scope="row"><a href="{{ url.long_url }}">{{ url.long_url }}</a></th>
+                        <th scope="row"><a href="{% url 'MiniURL:redirections' url.code %}">{{ url.long_url }}</a></th>
                         <td><a href="{% url 'MiniURL:redirections' url.code %}">url.st/{{ url.code }}</a></td>
                         <td>{{ url.nbre_access }}</td>
                     </tr>
@@ -40,14 +42,5 @@
             </tbody>
         </table>
     </div>
-    <!-- <h1>Creer un nouveau raccourcis</h1>
-    <p>
-        {% if envoi %} Votre url a bien été raccourci{% endif %}
-        <form action="" method="post">
-
-            <input type="submit" value="Submit">
-        </form>
-        <a href="{% url "MiniURL:list" %}">Voir la liste des URL</a>
-    </p> -->
 </body>
 </html>

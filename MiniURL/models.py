@@ -4,7 +4,7 @@ from django.db import models
 
 
 class MiniURL(models.Model):
-    long_url = models.URLField(unique=True)
+    long_url = models.URLField()
     code = models.CharField(max_length=10, unique=True)
     date_creation = models.DateTimeField(auto_now=False, auto_now_add=True)
     pseudo = models.CharField(max_length=255, blank=True, null=True)
